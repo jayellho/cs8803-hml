@@ -14,7 +14,6 @@ Course covering hardware-software co-design paradigms for machine learning syste
 8. Sparsity (Structured, Unstructured, Quantization)
 9. Distributed Machine Learning, Parallelism Schemes, Collective Communication
 
-
 ## Lab 1A: Core Transformer Operators and Performance Analysis on NVIDIA GPUs
 **Technologies used: Python (numpy, pandas), NVIDIA GPUs (Jetson Nano, A100), LLaMA-7B, GPT3**
 - Characterized core operators in Transformer models (Softmax, LayerNorm, GEMM, Scaled‑Dot‑Product Attention) in terms of FLOPs and data movement.
