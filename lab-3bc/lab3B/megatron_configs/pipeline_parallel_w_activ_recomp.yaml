@@ -1,0 +1,17 @@
+compute_environment: LOCAL_MACHINE
+debug: false
+distributed_type: MEGATRON_LM
+downcast_bf16: 'no'
+machine_rank: 0
+num_machines: 1 # keep this to 1
+main_training_function: main
+rdzv_backend: static
+mixed_precision: 'no'
+same_network: true
+tpu_env: []
+use_cpu: false
+megatron_lm_config:
+  megatron_lm_pp_degree: 2 # change this
+  megatron_lm_tp_degree: 1 # change this
+  megatron_lm_recompute_activations: true # change this
+num_processes: 2 # change this to control number of GPUs used

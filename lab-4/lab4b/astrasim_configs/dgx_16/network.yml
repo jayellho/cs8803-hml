@@ -1,0 +1,12 @@
+bandwidth:
+- 128.5714
+- 25
+latency:
+- 20
+- 100
+npus_count:
+- 8
+- 2
+topology:
+- FullyConnected
+- Switch

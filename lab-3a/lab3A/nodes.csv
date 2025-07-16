@@ -1,0 +1,126 @@
+,op,target,args,kwargs,shape,latency
+0,placeholder,input_ids,(),{},"[1, 1024]",0.0
+1,call_method,size,"(input_ids,)",{},,0.0005960464477539062
+2,call_function,<built-in function getitem>,"(size, -1)",{},,0.00021457672119140625
+3,call_method,view,"(input_ids, -1, getitem)",{},"[1, 1024]",0.03249645233154297
+4,call_method,size,"(view,)",{},,0.00035762786865234375
+5,call_function,<built-in function getitem>,"(size_1, 0)",{},,0.00016689300537109375
+6,call_function,<built-in function getitem>,"(size, -1)",{},,0.00021457672119140625
+7,call_function,<built-in function add>,"(getitem_2, 0)",{},,0.00019073486328125
+8,call_function,<built-in function getattr>,"(view, 'device')",{},,0.000286102294921875
+9,call_function,<built-in method arange of type object at 0x7bc135e97aa0>,"(0, add)","{'dtype': torch.int64, 'device': getattr_1}",[1024],0.0044345855712890625
+10,call_method,unsqueeze,"(arange, 0)",{},"[1, 1024]",0.001811981201171875
+11,call_function,<built-in function getitem>,"(size, -1)",{},,0.00019073486328125
+12,call_method,view,"(unsqueeze, -1, getitem_3)",{},"[1, 1024]",0.0020503997802734375
+13,call_module,transformer.wte,"(view,)",{},"[1, 1024, 2560]",2.6699066162109375
+14,call_module,transformer.wpe,"(view_1,)",{},"[1, 1024, 2560]",3.660106658935547
+15,call_function,<built-in function add>,"(transformer_wte, transformer_wpe)",{},"[1, 1024, 2560]",5.211448669433594
+16,call_module,transformer.drop,"(add_1,)",{},"[1, 1024, 2560]",11.611080169677734
+17,call_method,size,"(transformer_drop, -1)",{},,0.0003337860107421875
+18,call_function,<built-in function add>,"(size, (size_2,))",{},,0.00040531158447265625
+19,call_module,transformer.h.0.ln_1,"(transformer_drop,)",{},"[1, 1024, 2560]",4.358959197998047
+20,call_method,size,"(transformer_h_0_ln_1,)",{},,0.0003814697265625
+21,call_function,<built-in function getitem>,"(size_3, slice(None, -1, None))",{},,0.0003814697265625
+22,call_function,<built-in function add>,"(getitem_4, (7680,))",{},,0.00030994415283203125
+23,get_attr,transformer.h.0.attn.c_attn.bias,(),{},[7680],0.0
+24,call_method,size,"(transformer_h_0_ln_1, -1)",{},,0.00035762786865234375
+25,call_method,view,"(transformer_h_0_ln_1, -1, size_4)",{},"[1024, 2560]",0.0028133392333984375
+26,get_attr,transformer.h.0.attn.c_attn.weight,(),{},"[2560, 7680]",0.0
+27,call_function,<built-in method addmm of type object at 0x7bc135e97aa0>,"(transformer_h_0_attn_c_attn_bias, view_2, transformer_h_0_attn_c_attn_weight)",{},"[1024, 7680]",546.7223644256592
+28,call_method,view,"(addmm, add_3)",{},"[1, 1024, 7680]",0.0026226043701171875
+29,call_method,split,"(view_3, 2560)",{'dim': 2},,0.012803077697753906
+30,call_function,<built-in function getitem>,"(split, 0)",{},"[1, 1024, 2560]",0.0002384185791015625
+31,call_function,<built-in function getitem>,"(split, 1)",{},"[1, 1024, 2560]",0.00016689300537109375
+32,call_function,<built-in function getitem>,"(split, 2)",{},"[1, 1024, 2560]",0.00016689300537109375
+33,call_method,size,"(getitem_5,)",{},,0.00040531158447265625
+34,call_function,<built-in function getitem>,"(size_5, slice(None, -1, None))",{},,0.00030994415283203125
+35,call_function,<built-in function add>,"(getitem_8, (32, 80))",{},,0.0003337860107421875
+36,call_method,view,"(getitem_5, add_4)",{},"[1, 1024, 32, 80]",0.0028848648071289062
+37,call_method,permute,"(view_4, 0, 2, 1, 3)",{},"[1, 32, 1024, 80]",0.003147125244140625
+38,call_method,size,"(getitem_6,)",{},,0.0005006790161132812
+39,call_function,<built-in function getitem>,"(size_6, slice(None, -1, None))",{},,0.00045299530029296875
+40,call_function,<built-in function add>,"(getitem_9, (32, 80))",{},,0.0003814697265625
+41,call_method,view,"(getitem_6, add_5)",{},"[1, 1024, 32, 80]",0.0026464462280273438
+42,call_method,permute,"(view_5, 0, 2, 1, 3)",{},"[1, 32, 1024, 80]",0.004363059997558594
+43,call_method,size,"(getitem_7,)",{},,0.0003337860107421875
+44,call_function,<built-in function getitem>,"(size_7, slice(None, -1, None))",{},,0.00030994415283203125
+45,call_function,<built-in function add>,"(getitem_10, (32, 80))",{},,0.00035762786865234375
+46,call_method,view,"(getitem_7, add_6)",{},"[1, 1024, 32, 80]",0.0029325485229492188
+47,call_method,permute,"(view_6, 0, 2, 1, 3)",{},"[1, 32, 1024, 80]",0.0030517578125
+48,call_method,transpose,"(permute_1, -1, -2)",{},"[1, 32, 80, 1024]",0.003337860107421875
+49,call_function,<built-in method matmul of type object at 0x7bc135e97aa0>,"(permute, transpose)",{},"[1, 32, 1024, 1024]",211.4952802658081
+50,call_method,size,"(permute_2, -1)",{},,0.0008106231689453125
+51,call_function,<built-in function pow>,"(size_8, 0.5)",{},,0.0003814697265625
+52,call_function,<built-in function getattr>,"(matmul, 'dtype')",{},,0.0003814697265625
+53,call_function,<built-in function getattr>,"(matmul, 'device')",{},,0.0004291534423828125
+54,call_function,<built-in method full of type object at 0x7bc135e97aa0>,"([], pow_1)","{'dtype': getattr_2, 'device': getattr_3}",[],0.0062465667724609375
+55,call_function,<built-in function truediv>,"(matmul, full)",{},"[1, 32, 1024, 1024]",104.94186878204346
+56,call_method,size,"(permute, -2)",{},,0.0007152557373046875
+57,call_method,size,"(permute_1, -2)",{},,0.0006198883056640625
+58,get_attr,transformer.h.0.attn.bias,(),{},"[1, 1, 2048, 2048]",0.0
+59,call_function,<built-in function sub>,"(size_10, size_9)",{},,0.0003337860107421875
+60,call_function,<built-in function getitem>,"(transformer_h_0_attn_bias, (slice(None, None, None), slice(None, None, None), slice(sub, size_10, None), slice(None, size_10, None)))",{},"[1, 1, 1024, 1024]",0.008368492126464844
+61,call_method,to,"(getitem_11, torch.bool)",{},"[1, 1, 1024, 1024]",0.19516944885253906
+62,call_function,<built-in function getattr>,"(truediv, 'dtype')",{},,0.00026226043701171875
+63,call_function,<class 'torch.finfo'>,"(getattr_4,)",{},,0.000286102294921875
+64,call_function,<built-in function getattr>,"(finfo, 'min')",{},,0.00016689300537109375
+65,call_function,<built-in function getattr>,"(truediv, 'dtype')",{},,0.000286102294921875
+66,call_function,<built-in method full of type object at 0x7bc135e97aa0>,"([], getattr_5)",{'dtype': getattr_6},[],0.0029802322387695312
+67,call_function,<built-in function getattr>,"(truediv, 'device')",{},,0.00026226043701171875
+68,call_method,to,"(full_1, getattr_7)",{},[],0.0005483627319335938
+69,call_function,<built-in method where of type object at 0x7bc135e97aa0>,"(to, truediv, to_1)",{},"[1, 32, 1024, 1024]",118.56043338775635
+70,call_function,<function softmax at 0x7bc134166160>,"(where,)","{'dim': -1, '_stacklevel': 3, 'dtype': None}","[1, 32, 1024, 1024]",134.52978134155273
+71,call_function,<built-in function getattr>,"(permute_2, 'dtype')",{},,0.00035762786865234375
+72,call_method,type,"(softmax, getattr_8)",{},"[1, 32, 1024, 1024]",0.0005006790161132812
+73,call_module,transformer.h.0.attn.attn_dropout,"(type_1,)",{},"[1, 32, 1024, 1024]",324.4032382965088
+74,call_function,<built-in method matmul of type object at 0x7bc135e97aa0>,"(transformer_h_0_attn_attn_dropout, permute_2)",{},"[1, 32, 1024, 80]",97.45357036590576
+75,call_method,permute,"(matmul_1, 0, 2, 1, 3)",{},"[1, 1024, 32, 80]",0.0047206878662109375
+76,call_method,contiguous,"(permute_3,)",{},"[1, 1024, 32, 80]",1.8418073654174805
+77,call_method,size,"(contiguous,)",{},,0.0005245208740234375
+78,call_function,<built-in function getitem>,"(size_11, slice(None, -2, None))",{},,0.000476837158203125
+79,call_function,<built-in function add>,"(getitem_12, (2560,))",{},,0.00030994415283203125
+80,call_method,view,"(contiguous, add_7)",{},"[1, 1024, 2560]",0.0027418136596679688
+81,call_method,size,"(view_7,)",{},,0.0003814697265625
+82,call_function,<built-in function getitem>,"(size_12, slice(None, -1, None))",{},,0.00035762786865234375
+83,call_function,<built-in function add>,"(getitem_13, (2560,))",{},,0.000476837158203125
+84,get_attr,transformer.h.0.attn.c_proj.bias,(),{},[2560],0.0
+85,call_method,size,"(view_7, -1)",{},,0.0003814697265625
+86,call_method,view,"(view_7, -1, size_13)",{},"[1024, 2560]",0.0031232833862304688
+87,get_attr,transformer.h.0.attn.c_proj.weight,(),{},"[2560, 2560]",0.0
+88,call_function,<built-in method addmm of type object at 0x7bc135e97aa0>,"(transformer_h_0_attn_c_proj_bias, view_8, transformer_h_0_attn_c_proj_weight)",{},"[1024, 2560]",192.0750617980957
+89,call_method,view,"(addmm_1, add_8)",{},"[1, 1024, 2560]",0.004553794860839844
+90,call_module,transformer.h.0.attn.resid_dropout,"(view_9,)",{},"[1, 1024, 2560]",18.167710304260254
+91,call_function,<built-in function add>,"(transformer_h_0_attn_resid_dropout, transformer_drop)",{},"[1, 1024, 2560]",3.4355878829956055
+92,call_module,transformer.h.0.ln_2,"(add_9,)",{},"[1, 1024, 2560]",4.939365386962891
+93,call_method,size,"(transformer_h_0_ln_2,)",{},,0.001049041748046875
+94,call_function,<built-in function getitem>,"(size_14, slice(None, -1, None))",{},,0.000762939453125
+95,call_function,<built-in function add>,"(getitem_14, (10240,))",{},,0.0007867813110351562
+96,get_attr,transformer.h.0.mlp.c_fc.bias,(),{},[10240],0.0
+97,call_method,size,"(transformer_h_0_ln_2, -1)",{},,0.00095367431640625
+98,call_method,view,"(transformer_h_0_ln_2, -1, size_15)",{},"[1024, 2560]",0.0072956085205078125
+99,get_attr,transformer.h.0.mlp.c_fc.weight,(),{},"[2560, 10240]",0.0
+100,call_function,<built-in method addmm of type object at 0x7bc135e97aa0>,"(transformer_h_0_mlp_c_fc_bias, view_10, transformer_h_0_mlp_c_fc_weight)",{},"[1024, 10240]",785.748553276062
+101,call_method,view,"(addmm_2, add_10)",{},"[1, 1024, 10240]",0.0029087066650390625
+102,call_function,<built-in function mul>,"(0.5, view_11)",{},"[1, 1024, 10240]",26.84473991394043
+103,call_function,<built-in method pow of type object at 0x7bc135e97aa0>,"(view_11, 3.0)",{},"[1, 1024, 10240]",30.1893949508667
+104,call_function,<built-in function mul>,"(0.044715, pow_2)",{},"[1, 1024, 10240]",28.8801908493042
+105,call_function,<built-in function add>,"(view_11, mul_1)",{},"[1, 1024, 10240]",32.0401668548584
+106,call_function,<built-in function mul>,"(0.7978845608028654, add_11)",{},"[1, 1024, 10240]",29.643821716308594
+107,call_function,<built-in method tanh of type object at 0x7bc135e97aa0>,"(mul_2,)",{},"[1, 1024, 10240]",53.797125816345215
+108,call_function,<built-in function add>,"(1.0, tanh)",{},"[1, 1024, 10240]",30.103302001953125
+109,call_function,<built-in function mul>,"(mul, add_12)",{},"[1, 1024, 10240]",38.34891319274902
+110,call_method,size,"(mul_3,)",{},,0.0008821487426757812
+111,call_function,<built-in function getitem>,"(size_16, slice(None, -1, None))",{},,0.0006198883056640625
+112,call_function,<built-in function add>,"(getitem_15, (2560,))",{},,0.0005960464477539062
+113,get_attr,transformer.h.0.mlp.c_proj.bias,(),{},[2560],0.0
+114,call_method,size,"(mul_3, -1)",{},,0.0006437301635742188
+115,call_method,view,"(mul_3, -1, size_17)",{},"[1024, 10240]",0.0044345855712890625
+116,get_attr,transformer.h.0.mlp.c_proj.weight,(),{},"[10240, 2560]",0.0
+117,call_function,<built-in method addmm of type object at 0x7bc135e97aa0>,"(transformer_h_0_mlp_c_proj_bias, view_12, transformer_h_0_mlp_c_proj_weight)",{},"[1024, 2560]",771.5468883514404
+118,call_method,view,"(addmm_3, add_13)",{},"[1, 1024, 2560]",0.009226799011230469
+119,call_module,transformer.h.0.mlp.dropout,"(view_13,)",{},"[1, 1024, 2560]",12.927985191345215
+120,call_function,<built-in function add>,"(add_9, transformer_h_0_mlp_dropout)",{},"[1, 1024, 2560]",2.494645118713379
+121,call_module,transformer.ln_f,"(add_14,)",{},"[1, 1024, 2560]",5.361127853393555
+122,call_method,view,"(transformer_ln_f, add_2)",{},"[1, 1024, 2560]",0.0037431716918945312
+123,call_module,lm_head,"(view_14,)",{},"[1, 1024, 50257]",4091.5608644485474
+124,output,output,"({'logits': lm_head, 'past_key_values': ((permute_1, permute_2),)},)",{},,0.0

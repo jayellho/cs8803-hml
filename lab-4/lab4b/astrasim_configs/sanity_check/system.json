@@ -1,0 +1,24 @@
+{
+    "scheduling-policy": "LIFO",
+    "endpoint-delay": 10,
+    "active-chunks-per-dimension": 1,
+    "preferred-dataset-splits": 4,
+    "all-reduce-implementation": [
+        "direct", "halvingDoubling", "ring"
+    ],
+    "all-gather-implementation": [
+        "direct", "halvingDoubling", "ring"
+    ],
+    "reduce-scatter-implementation": [
+        "direct", "halvingDoubling", "ring"
+    ],
+    "all-to-all-implementation": [
+        "direct", "halvingDoubling", "ring"
+    ],
+    "collective-optimization": "localBWAware",
+    "local-mem-bw": 1600,
+    "boost-mode": 0,
+    "roofline-enabled": 1,
+    "peak-perf": 900,
+    "track-local-mem": 1
+}

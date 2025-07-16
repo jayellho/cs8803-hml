@@ -1,0 +1,20 @@
+bandwidth:
+- 128.5714
+- 100
+- 25
+- 6.25
+latency:
+- 20
+- 300
+- 700
+- 1000
+npus_count:
+- 8
+- 16
+- 4
+- 4
+topology:
+- FullyConnected
+- Switch
+- Ring
+- Ring
